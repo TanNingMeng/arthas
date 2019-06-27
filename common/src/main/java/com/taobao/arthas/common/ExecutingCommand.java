@@ -107,4 +107,9 @@ public class ExecutingCommand {
         return "";
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(ExecutingCommand.runNative("ls"));
+    }
+
 }

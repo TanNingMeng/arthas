@@ -243,7 +243,7 @@ public class Bootstrap {
 
         String mavenMetaData = null;
 
-        Bootstrap bootstrap = new Bootstrap();
+        Bootstrap bootstrap = new Bootstrap();  //  启动类
 
         CLI cli = CLIConfigurator.define(Bootstrap.class);
         CommandLine commandLine = cli.parse(Arrays.asList(args));

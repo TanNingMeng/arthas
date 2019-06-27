@@ -28,12 +28,12 @@ public final class IOUtil {
                 int ch;
 
                 try {
-                    while (!interrupted() && (ch = localInput.read()) != -1) {
-                        remoteOutput.write(ch);
-                        remoteOutput.flush();
+                    while (!interrupted() && (ch = localInput.read()) != -1) {      // 如果不是线程中断，而且读取的数据不是空的
+                        remoteOutput.write(ch);                                     // 写入
+                        remoteOutput.flush();                                       // 刷新
                     }
                 } catch (IOException e) {
-                    // e.printStackTrace();
+                    // e.printStackTrace();                                         // 啥也不处理？
                 }
             }
         };
@@ -43,16 +43,16 @@ public final class IOUtil {
             public void run() {
                 try {
                     InputStreamReader reader = new InputStreamReader(remoteInput);
-                    while (true) {
-                        int singleChar = reader.read();
+                    while (true) {                                                  // 不断循环？
+                        int singleChar = reader.read();                             //
                         if (singleChar == -1) {
                             break;
                         }
-                        localOutput.write(singleChar);
-                        localOutput.flush();
+                        localOutput.write(singleChar);                              // 写入
+                        localOutput.flush();                                        // 刷新
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.printStackTrace();                                            // 系统退出
                     System.exit(1);
                 }
             }
@@ -60,11 +60,13 @@ public final class IOUtil {
 
         writer.setPriority(Thread.currentThread().getPriority() + 1);
 
+        /* 上面设置了优先级，下面又设置为"伴随线程" */
         writer.start();
         reader.setDaemon(true);
         reader.start();
 
         try {
+            // TODO 这个是干啥的？搞清楚
             writer.join();
             reader.interrupt();
         } catch (InterruptedException e) {

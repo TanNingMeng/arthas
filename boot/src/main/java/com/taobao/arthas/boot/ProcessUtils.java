@@ -29,7 +29,7 @@ public class ProcessUtils {
 
     @SuppressWarnings("resource")
     public static int select(boolean v, int telnetPortPid) throws InputMismatchException {
-        Map<Integer, String> processMap = listProcessByJps(v);
+        Map<Integer, String> processMap = listProcessByJps(v);      // 执行吗ing领航
         // Put the port that is already listening at the first
         if (telnetPortPid > 0 && processMap.containsKey(telnetPortPid)) {
             String telnetPortProcess = processMap.get(telnetPortPid);
@@ -99,7 +99,7 @@ public class ProcessUtils {
             command = new String[] { jps, "-l" };
         }
 
-        List<String> lines = ExecutingCommand.runNative(command);
+        List<String> lines = ExecutingCommand.runNative(command);   // 执行命令行
 
         int currentPid = Integer.parseInt(PidUtils.currentPid());
         for (String line : lines) {

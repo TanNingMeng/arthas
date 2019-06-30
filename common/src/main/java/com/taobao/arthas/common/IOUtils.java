@@ -35,7 +35,7 @@ public class IOUtils {
     public static void copy(InputStream in, OutputStream out) throws IOException {
         byte[] buffer = new byte[1024];
         int len;
-        while ((len = in.read(buffer)) != -1) {
+        while ((len = in.read(buffer)) != -1) {         // 你知道为啥要这么写吗？怎么写 IO 流才是标准的？
             out.write(buffer, 0, len);
         }
     }

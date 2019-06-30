@@ -336,7 +336,7 @@ public class Bootstrap {
             System.exit(1);
         }
 
-        // find arthas home
+        // find arthas home  获取 arthas 的路径，估计跟
         File arthasHomeDir = null;
         if (bootstrap.getArthasHome() != null) {
             verifyArthasHome(bootstrap.getArthasHome());
@@ -347,7 +347,7 @@ public class Bootstrap {
             File specialVersionDir = new File(System.getProperty("user.home"), ".arthas" + File.separator + "lib"
                             + File.separator + bootstrap.getUseVersion() + File.separator + "arthas");
             if (!specialVersionDir.exists()) {
-                // try to download arthas from remote server.
+                // try to download arthas from remote server.   如果本地没有，就从远程服务器下载
                 DownloadUtils.downArthasPackaging(bootstrap.getRepoMirror(), bootstrap.isuseHttp(),
                                 bootstrap.getUseVersion(), ARTHAS_LIB_DIR.getAbsolutePath());
             }
@@ -381,9 +381,9 @@ public class Bootstrap {
 
             /**
              * <pre>
-             * 1. get local latest version
-             * 2. get remote latest version
-             * 3. compare two version
+             * 1. get local latest version      寻找最新版本
+             * 2. get remote latest version     寻找远程的最新版本
+             * 3. compare two version           比较版本是否享福
              * </pre>
              */
             List<String> versionList = listNames(ARTHAS_LIB_DIR);
@@ -419,6 +419,8 @@ public class Bootstrap {
                     }
                 }
             }
+
+            // 是否需要下载最新的版本
             if (needDownload) {
                 // try to download arthas from remote server.
                 DownloadUtils.downArthasPackaging(bootstrap.getRepoMirror(), bootstrap.isuseHttp(),

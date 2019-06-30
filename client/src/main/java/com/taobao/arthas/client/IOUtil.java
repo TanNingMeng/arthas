@@ -62,12 +62,12 @@ public final class IOUtil {
 
         /* 上面设置了优先级，下面又设置为"伴随线程" */
         writer.start();
-        reader.setDaemon(true);
+        reader.setDaemon(true);     // reader 是 "伴随线程"
         reader.start();
 
         try {
             // TODO 这个是干啥的？搞清楚
-            writer.join();
+            writer.join();          // 当前线程等待 writer 线程的死亡
             reader.interrupt();
         } catch (InterruptedException e) {
             // Ignored

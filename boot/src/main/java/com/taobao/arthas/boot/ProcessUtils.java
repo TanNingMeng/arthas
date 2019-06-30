@@ -219,15 +219,15 @@ public class ProcessUtils {
         // -core "${arthas_lib_dir}/arthas-core.jar" \
         // -agent "${arthas_lib_dir}/arthas-agent.jar"
 
-        ProcessBuilder pb = new ProcessBuilder(command);
+        ProcessBuilder pb = new ProcessBuilder(command);        // 新开一个操作系统的命令？
         try {
-            final Process proc = pb.start();
+            final Process proc = pb.start();                    // process 是线程还是进程？
             Thread redirectStdout = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    InputStream inputStream = proc.getInputStream();
+                    InputStream inputStream = proc.getInputStream();        // 各单位注意，下面开启了 IO 流的操作
                     try {
-                        IOUtils.copy(inputStream, System.out);
+                        IOUtils.copy(inputStream, System.out);              // 将外部的流 copy 到控制台的输出？？
                     } catch (IOException e) {
                         IOUtils.close(inputStream);
                     }

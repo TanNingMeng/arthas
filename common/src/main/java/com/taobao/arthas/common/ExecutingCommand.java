@@ -109,7 +109,7 @@ public class ExecutingCommand {
 
 
     public static void main(String[] args) {
-        System.out.println(ExecutingCommand.runNative("ls"));
+        System.out.println(ExecutingCommand.runNative("jps"));
     }
 
 }
